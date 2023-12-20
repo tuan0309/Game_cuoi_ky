@@ -19,8 +19,9 @@ public class CharacterSelect : MonoBehaviour
 
     public void OnPlayBtnClick()
     {
-        Application.LoadLevel("SampleScene");
+        SceneManager.LoadScene("ChooseLevel");
     }
+    
     // Update is called once per frame
     public void OnPrevBtnClick()
     {

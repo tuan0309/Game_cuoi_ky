@@ -9,17 +9,20 @@ public class Timer : MonoBehaviour
     int gameMode = 0;
     public int timer;
 
+    public WinPanel winPanel;
+
     private void Start()
     {
         gameMode = PlayerPrefs.GetInt("gameMode");
         StartCoroutine(StartTimer());
+        var winPanel = FindObjectOfType<WinPanel>();
     }
 
     IEnumerator StartTimer()
     {
         int showTimer = 0;
-        int maxTimer = 0;
-        if (gameMode == 0) maxTimer = 1800;
+        int maxTimer = 10;
+        if (gameMode == 0) maxTimer = 600;
         int second, minute;
         while (true)
         {
@@ -29,7 +32,11 @@ public class Timer : MonoBehaviour
                 showTimer = maxTimer - timer;
                 if (timer >= maxTimer)
                 {
-                    // win
+                    // Win condition reached
+                    // Use the WinPanel instance assigned in the Inspector
+                    winPanel.Show();
+                    yield return new WaitForSeconds(1f);
+                    // Implement additional win logic here
                 }
             }
             else
